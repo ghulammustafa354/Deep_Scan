@@ -1,0 +1,14 @@
+# API keys and secrets - NEVER commit these
+backend/.env
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Saved ML models (small files, safe to commit so application runs out of the box)
+# models/saved_models/*.pkl
+
+# Dataset (large files - MUST be ignored as emails.csv is 1.42 GB)
+dataset/*.csv

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00ff88;
+            --accent: #00d4ff;
+            --danger: #ff3366;
+            --warning: #ffaa00;
+            --bg: #0a0a0a;
+            --bg-card: rgba(26, 26, 46, 0.95);
+            --text: #ffffff;
+            --text-sub: #b0b0b0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            width: 360px;
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+            font-size: 14px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, rgba(0,255,136,0.15), rgba(0,212,255,0.1));
+            border-bottom: 2px solid var(--primary);
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-icon { font-size: 1.6rem; color: var(--primary); }
+
+        .header-text h2 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .header-text p { font-size: 0.75rem; color: var(--text-sub); }
+
+        .url-bar {
+            background: rgba(0,212,255,0.07);
+            border-bottom: 1px solid rgba(0,212,255,0.3);
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .url-bar i { color: var(--accent); font-size: 0.8rem; flex-shrink: 0; }
+
+        .url-text {
+            font-size: 0.78rem;
+            color: var(--text-sub);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-family: monospace;
+        }
+
+        .status-block {
+            margin: 12px;
+            border-radius: 10px;
+            padding: 14px;
+            border: 2px solid;
+            transition: all 0.3s;
+        }
+
+        .status-block.loading  { border-color: var(--accent);  background: rgba(0,212,255,0.07); }
+        .status-block.safe     { border-color: var(--primary); background: rgba(0,255,136,0.08); }
+        .status-block.danger   { border-color: var(--danger);  background: rgba(255,51,102,0.08); }
+        .status-block.warning  { border-color: var(--warning); background: rgba(255,170,0,0.08); }
+        .status-block.skipped  { border-color: #555;           background: rgba(255,255,255,0.04); }
+
+        .status-row { display: flex; align-items: center; gap: 10px; }
+        .status-icon { font-size: 1.6rem; }
+        .status-title { font-size: 1rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+        .status-desc  { font-size: 0.8rem; color: var(--text-sub); margin-top: 4px; line-height: 1.4; }
+
+        .spinner {
+            width: 22px; height: 22px;
+            border: 3px solid rgba(0,212,255,0.2);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin: 0 12px 12px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid rgba(0,212,255,0.25);
+            border-radius: 8px;
+            padding: 10px 12px;
+            transition: border-color 0.3s;
+        }
+
+        .card:hover { border-color: var(--primary); }
+
+        .card-label {
+            font-size: 0.7rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .card-value {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .card-value.red    { color: var(--danger); }
+        .card-value.yellow { color: var(--warning); }
+        .card-value.grey   { color: var(--text-sub); }
+
+        .card-sub {
+            font-size: 0.68rem;
+            color: var(--text-sub);
+            margin-top: 3px;
+            line-height: 1.3;
+        }
+
+        /* SSL card spans full width */
+        .card.full { grid-column: 1 / -1; }
+
+        .actions {
+            display: flex;
+            gap: 8px;
+            margin: 0 12px 12px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 9px;
+            border-radius: 6px;
+            border: none;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: #0a0a0a;
+        }
+
+        .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
+
+        .btn-secondary {
+            background: rgba(0,212,255,0.1);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-secondary:hover { background: rgba(0,212,255,0.2); }
+
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+        .footer {
+            text-align: center;
+            padding: 8px;
+            font-size: 0.7rem;
+            color: var(--text-sub);
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+
+        #detailsGrid { display: none; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-icon"><i class="fas fa-shield-virus"></i></div>
+        <div class="header-text">
+            <h2>Deep Scan</h2>
+            <p>AI-Powered Phishing Detection</p>
+        </div>
+    </div>
+
+    <div class="url-bar">
+        <i class="fas fa-globe"></i>
+        <div class="url-text" id="currentUrl">Loading...</div>
+    </div>
+
+    <div id="gmailScanContainer" style="display: none; padding: 12px; margin: 12px; background: rgba(0, 255, 136, 0.05); border: 1px dashed var(--primary); border-radius: 8px; text-align: center;">
+        <div style="font-weight: 700; color: var(--primary); font-size: 0.85rem; margin-bottom: 6px; letter-spacing: 0.5px; text-transform: uppercase;">
+            <i class="fab fa-google"></i> Gmail Tab Detected
+        </div>
+        <button class="btn btn-primary" id="analyzeEmailBtn" style="width: 100%;">
+            <i class="fas fa-envelope-open-text"></i> Analyze Open Email
+        </button>
+    </div>
+
+    <div class="status-block loading" id="statusBlock">
+        <div class="status-row">
+            <div class="status-icon"><div class="spinner"></div></div>
+            <div>
+                <div class="status-title">Analyzing...</div>
+                <div class="status-desc">Scanning with AI model...</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid" id="detailsGrid">
+        <div class="card">
+            <div class="card-label"><i class="fas fa-percentage"></i> Confidence</div>
+            <div class="card-value" id="confidence">-</div>
+        </div>
+        <div class="card">
+            <div class="card-label"><i class="fas fa-exclamation-triangle"></i> Risk Level</div>
+            <div class="card-value" id="riskLevel">-</div>
+        </div>
+        <div class="card">
+            <div class="card-label"><i class="fas fa-bug"></i> Phishing Prob</div>
+            <div class="card-value" id="phishingProb">-</div>
+        </div>
+        <div class="card">
+            <div class="card-label"><i class="fas fa-check-circle"></i> Safe Prob</div>
+            <div class="card-value" id="legitimateProb">-</div>
+        </div>
+        <div class="card full" id="certCard">
+            <div class="card-label"><i class="fas fa-certificate"></i> SSL Certificate</div>
+            <div class="card-value grey" id="certStatus">Checking...</div>
+            <div class="card-sub" id="certDetails"></div>
+        </div>
+    </div>
+
+    <div class="grid" id="emailDetailsGrid" style="display: none; margin: 0 12px 12px;">
+        <div class="card full">
+            <div class="card-label"><i class="fas fa-id-card"></i> Sender Domain Check</div>
+            <div class="card-value" id="emailSenderStatus">-</div>
+            <div class="card-sub" id="emailSenderDetails"></div>
+        </div>
+        <div class="card">
+            <div class="card-label"><i class="fas fa-file-alt"></i> Body Scan</div>
+            <div class="card-value" id="emailBodyStatus">-</div>
+            <div class="card-sub" id="emailBodyDetails"></div>
+        </div>
+        <div class="card">
+            <div class="card-label"><i class="fas fa-link"></i> Link Scanner</div>
+            <div class="card-value" id="emailLinksStatus">-</div>
+            <div class="card-sub" id="emailLinksDetails"></div>
+        </div>
+        <div class="card full" id="emailLinkListCard" style="display: none;">
+            <div class="card-label"><i class="fas fa-list"></i> Flagged Phishing URLs</div>
+            <div class="card-sub" id="emailFlaggedLinks" style="max-height: 120px; overflow-y: auto; font-family: monospace; font-size: 0.72rem; word-break: break-all; margin-top: 6px; line-height: 1.4; color: #ff3366;"></div>
+        </div>
+    </div>
+
+    <div class="actions">
+        <button class="btn btn-primary" id="recheckBtn">
+            <i class="fas fa-sync-alt"></i> Recheck
+        </button>
+        <button class="btn btn-secondary" id="openDashboardBtn">
+            <i class="fas fa-chart-bar"></i> Dashboard
+        </button>
+    </div>
+
+    <div class="footer">Deep Scan v2.0 &nbsp;|&nbsp; ML + NLP Detection</div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,323 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Rajdhani', sans-serif;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body[data-theme="dark"] {
+    background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+    color: #00ff88;
+}
+
+body[data-theme="light"] {
+    background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
+    color: #1a1f3a;
+}
+
+.cyber-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        repeating-linear-gradient(0deg, rgba(0, 255, 136, 0.03) 0px, transparent 1px, transparent 2px, rgba(0, 255, 136, 0.03) 3px),
+        repeating-linear-gradient(90deg, rgba(0, 255, 136, 0.03) 0px, transparent 1px, transparent 2px, rgba(0, 255, 136, 0.03) 3px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(0, 255, 136, 0.1);
+    border: 2px solid #00ff88;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    z-index: 1000;
+}
+
+.theme-toggle:hover {
+    background: rgba(0, 255, 136, 0.2);
+    transform: rotate(180deg);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 40px 20px;
+}
+
+.logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 900;
+    letter-spacing: 8px;
+    text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+    margin-bottom: 10px;
+}
+
+.tagline {
+    font-size: 1.2rem;
+    letter-spacing: 4px;
+    opacity: 0.8;
+}
+
+.scan-panel {
+    background: rgba(0, 255, 136, 0.05);
+    border: 2px solid #00ff88;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.2);
+}
+
+.scan-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 30px;
+    letter-spacing: 3px;
+}
+
+.input-section {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.url-input {
+    flex: 1;
+    padding: 15px 20px;
+    background: rgba(0, 255, 136, 0.05);
+    border: 2px solid #00ff88;
+    border-radius: 8px;
+    color: inherit;
+    font-size: 1rem;
+    font-family: 'Rajdhani', sans-serif;
+    transition: all 0.3s;
+}
+
+.url-input:focus {
+    outline: none;
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+}
+
+.scan-btn {
+    padding: 15px 40px;
+    background: #00ff88;
+    color: #0a0e27;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.scan-btn:hover {
+    background: #00cc6f;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(0, 255, 136, 0.4);
+}
+
+.example-urls {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.url-examples {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.example-btn {
+    padding: 8px 15px;
+    background: rgba(0, 255, 136, 0.1);
+    border: 1px solid #00ff88;
+    border-radius: 5px;
+    color: inherit;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Rajdhani', sans-serif;
+}
+
+.example-btn:hover {
+    background: rgba(0, 255, 136, 0.2);
+}
+
+.loading {
+    display: none;
+    text-align: center;
+    padding: 40px;
+}
+
+.cyber-loader {
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba(0, 255, 136, 0.2);
+    border-top: 4px solid #00ff88;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+}
+
+.results {
+    display: none;
+}
+
+.threat-status {
+    text-align: center;
+    padding: 40px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.threat-status.safe {
+    background: rgba(0, 255, 136, 0.1);
+    border: 2px solid #00ff88;
+}
+
+.threat-status.danger {
+    background: rgba(255, 0, 68, 0.1);
+    border: 2px solid #ff0044;
+    color: #ff0044;
+}
+
+.threat-status.warning {
+    background: rgba(255, 165, 0, 0.1);
+    border: 2px solid #ffa500;
+    color: #ffa500;
+}
+
+.threat-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.threat-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 10px;
+    letter-spacing: 3px;
+}
+
+.threat-desc {
+    font-size: 1.1rem;
+    opacity: 0.8;
+}
+
+.security-score {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.score-display {
+    font-size: 3rem;
+    font-weight: 900;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.analysis-matrix {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.matrix-card {
+    background: rgba(0, 255, 136, 0.05);
+    border: 2px solid #00ff88;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+}
+
+.matrix-title {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    margin-bottom: 10px;
+}
+
+.matrix-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+    opacity: 0.6;
+}
+
+/* Light Theme Adjustments */
+body[data-theme="light"] .scan-panel,
+body[data-theme="light"] .url-input,
+body[data-theme="light"] .matrix-card,
+body[data-theme="light"] .example-btn {
+    background: rgba(26, 31, 58, 0.05);
+    border-color: #1a1f3a;
+}
+
+body[data-theme="light"] .scan-btn {
+    background: #1a1f3a;
+    color: #f0f4f8;
+}
+
+body[data-theme="light"] .theme-toggle {
+    border-color: #1a1f3a;
+    background: rgba(26, 31, 58, 0.1);
+}
+
+@media (max-width: 768px) {
+    .logo {
+        font-size: 2rem;
+    }
+    
+    .input-section {
+        flex-direction: column;
+    }
+    
+    .analysis-matrix {
+        grid-template-columns: 1fr;
+    }
+}

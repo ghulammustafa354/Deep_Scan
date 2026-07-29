@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Scan - AI Phishing Detection</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="dark">
+    <div class="cyber-bg"></div>
+    
+    <div class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-moon" id="themeIcon"></i>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-shield-virus"></i> DEEP SCAN
+            </div>
+            <div class="tagline">AI-POWERED PHISHING DETECTION SYSTEM</div>
+        </div>
+
+        <div class="scan-panel">
+            <div class="scan-title">THREAT ANALYSIS CONSOLE</div>
+            
+            <div class="input-section">
+                <input type="url" class="url-input" id="urlInput" placeholder="Enter target URL for AI security analysis...">
+                <button class="scan-btn" id="scanBtn">
+                    <i class="fas fa-search"></i> SCAN
+                </button>
+            </div>
+
+            <div class="example-urls">
+                <p>Try these examples:</p>
+                <div class="url-examples">
+                    <button class="example-btn" onclick="testUrl('https://www.google.com')">google.com</button>
+                    <button class="example-btn" onclick="testUrl('https://www.github.com')">github.com</button>
+                    <button class="example-btn" onclick="testUrl('http://secure-paypal-update.tk')">secure-paypal-update.tk</button>
+                    <button class="example-btn" onclick="testUrl('http://amazon-verify-account.ml')">amazon-verify-account.ml</button>
+                </div>
+            </div>
+
+            <div class="loading" id="loading">
+                <div class="cyber-loader"></div>
+                <div class="loading-text">ANALYZING WITH AI...</div>
+            </div>
+
+            <div class="results" id="results">
+                <div class="threat-status" id="threatStatus">
+                    <div class="threat-icon" id="threatIcon">✔</div>
+                    <div class="threat-title" id="threatTitle">SECURE</div>
+                    <div class="threat-desc" id="threatDesc">Target appears to be legitimate and safe</div>
+                    
+                    <div class="security-score">
+                        <div class="score-display" id="scoreDisplay">
+                            <span id="securityScore">95%</span>
+                        </div>
+                        <div>
+                            <h3>SECURITY RATING</h3>
+                            <p>AI-Powered Analysis</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="analysis-matrix">
+                    <div class="matrix-card">
+                        <div class="matrix-title">
+                            <i class="fas fa-ruler"></i> URL LENGTH
+                        </div>
+                        <div class="matrix-value" id="urlLength">-</div>
+                    </div>
+                    <div class="matrix-card">
+                        <div class="matrix-title">
+                            <i class="fas fa-lock"></i> ENCRYPTION
+                        </div>
+                        <div class="matrix-value" id="encryptionStatus">-</div>
+                    </div>
+                    <div class="matrix-card">
+                        <div class="matrix-title">
+                            <i class="fas fa-exclamation-triangle"></i> RISK LEVEL
+                        </div>
+                        <div class="matrix-value" id="riskLevel">-</div>
+                    </div>
+                    <div class="matrix-card">
+                        <div class="matrix-title">
+                            <i class="fas fa-percentage"></i> CONFIDENCE
+                        </div>
+                        <div class="matrix-value" id="confidence">-</div>
+                    </div>
+                    <div class="matrix-card">
+                        <div class="matrix-title">
+                            <i class="fas fa-certificate"></i> SSL CERTIFICATE
+                        </div>
+                        <div class="matrix-value" id="certStatus">-</div>
+                        <div class="matrix-sub" id="certDetails" style="font-size:0.75rem; opacity:0.7; margin-top:6px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2026 DEEP SCAN - AI PHISHING DETECTION SYSTEM</p>
+            <p>POWERED BY KAGGLE PHIUSIIL DATASET & MACHINE LEARNING</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

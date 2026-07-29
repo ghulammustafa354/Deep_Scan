@@ -1,0 +1,108 @@
+{
+    "history": [
+        {
+            "type": "URL",
+            "source": "Web UI",
+            "input": "https://www.google.com",
+            "result": "Legitimate",
+            "confidence": 0.98,
+            "timestamp": "2026-07-08T17:40:26.130315"
+        },
+        {
+            "type": "URL",
+            "source": "Web UI",
+            "input": "http://secure-paypal-update.tk",
+            "result": "Phishing",
+            "confidence": 0.99,
+            "timestamp": "2026-07-08T17:40:26.130315"
+        },
+        {
+            "type": "Email",
+            "source": "Web UI",
+            "input": "From: informational@email.snapchat.com | Subject: Syed added you as a friend!",
+            "result": "Legitimate",
+            "confidence": 0.98,
+            "timestamp": "2026-07-08T17:40:26.130315"
+        },
+        {
+            "type": "Email",
+            "source": "Web UI",
+            "input": "From: mirbalac bbhnjrmbokmzzy@udfki6... | Subject: Welcome to Casino Limitless",
+            "result": "Phishing",
+            "confidence": 1.0,
+            "timestamp": "2026-07-08T17:40:26.130315"
+        },
+        {
+            "type": "QR Code",
+            "source": "Web UI",
+            "input": "https://g00gle.com",
+            "result": "Phishing",
+            "confidence": 0.99,
+            "timestamp": "2026-07-08T17:40:26.130315"
+        },
+        {
+            "type": "URL",
+            "source": "Web UI",
+            "input": "https://www.google.com",
+            "result": "Legitimate",
+            "confidence": 0.98,
+            "timestamp": "2026-07-08T17:40:26.132379"
+        },
+        {
+            "type": "URL",
+            "source": "Web UI",
+            "input": "https://www.google.com",
+            "result": "Legitimate",
+            "confidence": 0.98,
+            "timestamp": "2026-07-08T17:40:32.532862"
+        },
+        {
+            "type": "URL",
+            "source": "Web UI",
+            "input": "https://www.google.com",
+            "result": "Legitimate",
+            "confidence": 0.98,
+            "timestamp": "2026-07-08T17:41:06.367737"
+        },
+        {
+            "type": "URL",
+            "source": "Web UI",
+            "input": "https://www.github.com",
+            "result": "Legitimate",
+            "confidence": 0.98,
+            "timestamp": "2026-07-08T17:41:07.250388"
+        },
+        {
+            "type": "URL",
+            "source": "Web UI",
+            "input": "http://www.secure-paypal-update.tk",
+            "result": "Phishing",
+            "confidence": 0.99,
+            "timestamp": "2026-07-08T17:41:08.211773"
+        },
+        {
+            "type": "URL",
+            "source": "Web UI",
+            "input": "http://www.amazon-verify-account.ml",
+            "result": "Phishing",
+            "confidence": 0.99,
+            "timestamp": "2026-07-08T17:41:08.702144"
+        },
+        {
+            "type": "URL",
+            "source": "Web UI",
+            "input": "http://www.secure-paypal-update.tk",
+            "result": "Phishing",
+            "confidence": 0.99,
+            "timestamp": "2026-07-08T17:41:09.736235"
+        },
+        {
+            "type": "URL",
+            "source": "Web UI",
+            "input": "https://www.codewithharry.com",
+            "result": "Legitimate",
+            "confidence": 0.95,
+            "timestamp": "2026-07-08T17:41:24.747135"
+        }
+    ]
+}

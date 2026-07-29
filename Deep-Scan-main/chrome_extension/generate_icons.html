@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate Extension Icons</title>
+    <style>
+        .icon {
+            display: inline-block;
+            margin: 10px;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .icon-canvas {
+            border: 1px solid #ccc;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Extension Icons</h1>
+    <p>Right-click on each icon and "Save image as..." to save the icon files.</p>
+    
+    <div class="icon">
+        <canvas class="icon-canvas" width="16" height="16" id="icon16"></canvas>
+        <div>icon16.png</div>
+    </div>
+    
+    <div class="icon">
+        <canvas class="icon-canvas" width="32" height="32" id="icon32"></canvas>
+        <div>icon32.png</div>
+    </div>
+    
+    <div class="icon">
+        <canvas class="icon-canvas" width="48" height="48" id="icon48"></canvas>
+        <div>icon48.png</div>
+    </div>
+    
+    <div class="icon">
+        <canvas class="icon-canvas" width="128" height="128" id="icon128"></canvas>
+        <div>icon128.png</div>
+    </div>
+
+    <script>
+        function drawIcon(canvas, size) {
+            const ctx = canvas.getContext('2d');
+            
+            // Background gradient
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#667eea');
+            gradient.addColorStop(1, '#764ba2');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, size, size);
+            
+            // Shield icon
+            ctx.fillStyle = '#ffffff';
+            ctx.font = `${size * 0.6}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('🛡️', size/2, size/2);
+        }
+        
+        // Generate all icons
+        drawIcon(document.getElementById('icon16'), 16);
+        drawIcon(document.getElementById('icon32'), 32);
+        drawIcon(document.getElementById('icon48'), 48);
+        drawIcon(document.getElementById('icon128'), 128);
+    </script>
+</body>
+</html>
